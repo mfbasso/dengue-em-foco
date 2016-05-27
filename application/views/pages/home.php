@@ -7,29 +7,30 @@
 </head>
 <body>
 	<script type="text/javascript" src="<?php echo base_url(); ?>/assets/scripts/config.js"></script>
+	
 	<div class="g-signin2" data-onsuccess="onSignIn"></div>
-	<!--a href="#" onclick="signOut();">Sign out</a-->
 	
 	<div id="in">
-		<!--fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-		</fb:login-button-->
-		<div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" scope='public_profile, email, user_birthday' onLogin='checkLoginState();'></div>
+		<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" scope='public_profile, email, user_birthday' onLogin='checkLoginState();'></div>
 	</div>
-	<div id="out" style="display:none;">
-		<button onclick="logout();">Sair</button>
-	</div>
-	<div id="status">
-		
-	</div>
-	<div id="username">
-	</div>
-	<div id="email">
-	</div>
-	<div id="sexo">
-	</div>
-	<div id="id">
-	</div>
-	<div id="imagem">
-		<img src="" id="foto" />
-	</div>
+
+	<script type="text/javascript">
+		var usuario = {'userName' : localStorage.getItem('userName'), 'userEmail' : localStorage.getItem('userEmail'), 'userPhoto' : localStorage.getItem('userPhoto')};
+
+		$.ajax({
+			type: "POST",
+			url: "http://localhost/dengue-em-foco/login/oauth",
+			dataType: 'json',
+			data: {
+				'usuario' : JSON.stringify(usuario)
+			},
+			success: function(data){
+				console.log("success" + data);
+				window.location.href='http://localhost/dengue-em-foco/pages/view/mapa';
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+			 	alert("Erro! " + textStatus + ' ' + errorThrown);
+			}
+		});	  
+	</script>
 </body></html>

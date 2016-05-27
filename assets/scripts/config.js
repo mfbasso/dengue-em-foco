@@ -1,35 +1,22 @@
+
 //Google Login
 function onSignIn(googleUser)
-		{
-		  var profile = googleUser.getBasicProfile();
-		  localStorage.setItem('userName', profile.getName());
-		  localStorage.setItem('userPhoto', profile.getImageUrl());
-		  localStorage.setItem('userEmail', profile.getEmail());
+	{
+	  var profile = googleUser.getBasicProfile();
+	  localStorage.setItem('userName', profile.getName());
+	  localStorage.setItem('userPhoto', profile.getImageUrl());
+	  localStorage.setItem('userEmail', profile.getEmail());	  
+	}
 
-			//Captura informações do PHP
-		  jQuery.ajax({
-				url : 'http://localhost/dengue-em-foco/index.php/pages/login/validar',
-				type : 'POST', 
-				data : {
-					'userName' : JSON.stringify(profile.getName()),
-					'userPhoto' : JSON.stringify(profile.getImageUrl()),
-					'userEmail' : JSON.stringify(profile.getEmail())
-				},
-				dataType: 'json',
-				success : function(data){ 
-					window.location.href='http://localhost/dengue-em-foco/pages/login/redirecionar'
-				}
-			});
-		}
-		function signOut()
-		{
-			var auth2 = gapi.auth2.getAuthInstance();
-			auth2.disconnect().then(function () {
-			  console.log('User signed out.');
-			});
-							
-				
-		}
+	function signOut()
+	{
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.disconnect().then(function () {
+		  console.log('User signed out.');
+		});
+						
+			
+	}
 
 	//Facebook login
 
@@ -69,23 +56,21 @@ function onSignIn(googleUser)
   //    your app or not.
   //
   // These three cases are handled in the callback function.
-
-	  FB.getLoginStatus(function(response) {
+		FB.getLoginStatus(function(response) {
 		statusChangeCallback(response);
-	  });
+		});
 
   };
-  // Load the SDK asynchronously
-  (function(d, s, id)
-  {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }
+	// Load the SDK asynchronously
+	  (function(d, s, id)
+	  {
+	    var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "//connect.facebook.net/en_US/sdk.js";
+	    fjs.parentNode.insertBefore(js, fjs);
+	  }
   (document, 'script', 'facebook-jssdk'));
-
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
@@ -110,12 +95,4 @@ function onSignIn(googleUser)
 				// Person is now logged out
 				
 		});
-		document.getElementById('in').setAttribute('style', 'display: inline');
-		document.getElementById('out').setAttribute('style', 'display: none');
-		document.getElementById('email').innerHTML = "";
-		document.getElementById('sexo').innerHTML = "";
-		document.getElementById('id').innerHTML = "";
-		document.getElementById('foto').innerHTML ="";
-		document.getElementById('status').innerHTML ="";
-
 	}

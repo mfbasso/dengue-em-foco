@@ -15,11 +15,9 @@
 			if($nomeUsuario!="" && $emailUsuario!=""){
 				$array = array('idUsuario' => 1, 'logged_in'=>true);
 				$this->session->set_userdata($array);
-				return true;
 			}
 			else
 				session_write_close(oid);
-				return false;
 		}
 	}
 ?>

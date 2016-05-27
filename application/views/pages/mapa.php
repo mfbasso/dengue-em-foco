@@ -1,3 +1,3 @@
 <?php
-echo "deu certo!";
+echo 'mapa.view';
 ?>
