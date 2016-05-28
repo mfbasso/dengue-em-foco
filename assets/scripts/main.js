@@ -9,7 +9,7 @@ $.ajax({
   url: "http://localhost/dengue-em-foco/login/oauth",
   dataType: 'json',
   data: {
-    'usuario' : JSON.stringify(usuario)
+    'user' : JSON.stringify(user)
   },
   success: function(data){
     console.log("success" + data);
