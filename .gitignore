@@ -16,7 +16,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 # Node Modules
 #-------------------------
-node_modules/*
+assets/node_modules/*
 
 # IDE Files
 #-------------------------
