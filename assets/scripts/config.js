@@ -70,7 +70,7 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me', 'get', { access_token: token, fields: 'id,email' }, function(response) {
       //Captura informações do PHP
       $.ajax({
         type: 'POST',
